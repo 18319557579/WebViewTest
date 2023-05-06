@@ -50,4 +50,35 @@ public class WebViewActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        webView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        webView.onPause();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        webView.resumeTimers();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        webView.pauseTimers();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mBinding.getRoot().removeView(webView);
+        webView.destroy();
+    }
 }
