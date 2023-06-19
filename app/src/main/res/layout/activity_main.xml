@@ -11,6 +11,13 @@
         android:id="@+id/btn_skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="去WebView"/>
+        android:text="google"/>
+
+    <Button
+        android:id="@+id/btn_skip_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="baidu"/>
+
 
 </LinearLayout>

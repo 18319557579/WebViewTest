@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding mBinding;
 
+    private static final String URL = "www.google.com";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +24,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                intent.putExtra(WebViewActivity.KEY_URL, URL);
+                startActivity(intent);
+            }
+        });
+
+        mBinding.btnSkipTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
                 intent.putExtra(WebViewActivity.KEY_URL, "www.baidu.com");
                 startActivity(intent);
             }
         });
+
     }
 
     @Override

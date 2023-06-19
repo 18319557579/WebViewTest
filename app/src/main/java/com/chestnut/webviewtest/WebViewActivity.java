@@ -21,6 +21,8 @@ public class WebViewActivity extends AppCompatActivity {
 
     WebView webView;
 
+    SettingsManager settingsManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +34,16 @@ public class WebViewActivity extends AppCompatActivity {
 
         initView();
         initWebView();
+
+        settingsManager = new SettingsManager(webView);
+        settingsManager.setSettings();
     }
 
     private void initView() {
         mBinding.btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.clearCache(true);
+                webView.getSettings().setLoadsImagesAutomatically(true);
 
             }
         });
@@ -62,20 +67,22 @@ public class WebViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean ttt = webView.canGoBack();
                 Log.d("Daisy", "是否可以后退：" + ttt);
+
+                webView.goBackOrForward(-1);
             }
         });
 
         mBinding.btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.goBackOrForward(-1);
+                webView.goBackOrForward(1);
             }
         });
 
     }
 
     private void initWebView() {
-        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
 
         Intent intent = getIntent();
