@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.chestnut.webviewtest.databinding.ActivityWebViewBinding;
 
@@ -24,9 +27,51 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding = ActivityWebViewBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
+
         webView = mBinding.wb;
 
+        initView();
         initWebView();
+    }
+
+    private void initView() {
+        mBinding.btnOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.clearCache(true);
+
+            }
+        });
+
+        mBinding.btnTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.clearHistory();
+            }
+        });
+
+        mBinding.btnThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.clearFormData();
+            }
+        });
+
+        mBinding.btnFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean ttt = webView.canGoBack();
+                Log.d("Daisy", "是否可以后退：" + ttt);
+            }
+        });
+
+        mBinding.btnFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.goBackOrForward(-1);
+            }
+        });
+
     }
 
     private void initWebView() {
