@@ -13,4 +13,5 @@ webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 设置了关闭缓存的话，使用前进键和回退键时就会比较卡，因为每一次都是重新加载了，并且断网后前进和后退都变得无法使用了
 
 webSettings.setLoadsImagesAutomatically(false);
-设置为false后，图片都不会加载了。此时设置为true，那么页面上的图片就立马会开始加载了
+设置为false后，图片都不会加载了。此时设置为true，那么页面上的图片就立马会开始加载了。
+然后再设置为false，原来那些已经加载的图片不受影响，不过后面网页的图片就加载不出来了

@@ -51,7 +51,7 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding.btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.clearHistory();
+                webView.getSettings().setLoadsImagesAutomatically(false);
             }
         });
 
