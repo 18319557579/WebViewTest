@@ -39,5 +39,12 @@ public class SettingsManager {
         webSettings.setLoadsImagesAutomatically(true);
 
         webSettings.setDefaultTextEncodingName("UTF-8");
+
+
+        //用于使用localStorage
+        webSettings.setDomStorageEnabled(true);
+
+        //浏览器数据库
+        webSettings.setDatabaseEnabled(true);
     }
 }
