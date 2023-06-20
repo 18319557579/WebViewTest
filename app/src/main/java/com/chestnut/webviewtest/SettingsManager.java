@@ -36,7 +36,7 @@ public class SettingsManager {
         webSettings.setLoadsImagesAutomatically(true);
 
         //卧槽，设置为false后，图片都不会加载了。
-        webSettings.setLoadsImagesAutomatically(false);
+        webSettings.setLoadsImagesAutomatically(true);
 
         webSettings.setDefaultTextEncodingName("UTF-8");
     }
