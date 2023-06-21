@@ -37,6 +37,8 @@ public class WebViewActivity extends AppCompatActivity {
 
         settingsManager = new SettingsManager(webView);
         settingsManager.setSettings();
+
+        webView.setWebViewClient(new MyClient());
     }
 
     private void initView() {
