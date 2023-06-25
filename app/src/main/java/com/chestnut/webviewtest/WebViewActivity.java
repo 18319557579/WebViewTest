@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
@@ -20,6 +22,9 @@ import android.widget.TextView;
 import com.chestnut.webviewtest.databinding.ActivityWebViewBinding;
 import com.chestnut.webviewtest.map.AndroidToJs;
 import com.chestnut.webviewtest.utils.LogUtil;
+
+import java.util.HashMap;
+import java.util.Set;
 
 public class WebViewActivity extends AppCompatActivity {
 
@@ -58,6 +63,35 @@ public class WebViewActivity extends AppCompatActivity {
             b.create().show();
             return true;
         }
+
+        @Override
+        public boolean innerJsConfirm(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+            Uri uri = Uri.parse(message);
+            // 如果url的协议 = 预先约定的 js 协议
+            // 就解析往下解析参数
+            if ( uri.getScheme().equals("js")) {
+
+                // 如果 authority  = 预先约定协议里的 webview，即代表都符合约定的协议
+                // 所以拦截url,下面JS开始调用Android需要的方法
+                if (uri.getAuthority().equals("webview")) {
+
+                    //
+                    // 执行JS所需要调用的逻辑
+                    LogUtil.d("js利用prompt调用了java的方法");
+                    // 可以在协议上带有参数并传递到Android上
+                    HashMap<String, String> params = new HashMap<>();
+                    Set<String> collection = uri.getQueryParameterNames();
+                    LogUtil.d("参数为：" + collection);
+
+                    //参数result:代表消息框的返回值(输入值)
+                    result.confirm("js调用了Android的方法成功啦");
+                }
+                return true;
+            }
+            return super.onJsPrompt(view, url, message, defaultValue, result);
+        }
+
+
     };
 
     @Override

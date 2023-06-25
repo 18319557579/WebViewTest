@@ -1,5 +1,6 @@
 package com.chestnut.webviewtest;
 
+import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -24,9 +25,16 @@ public abstract class MyWebChromeClient extends WebChromeClient {
         return innerJsAlert(view, url, message, result);
     }
 
+    @Override
+    public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+        return innerJsConfirm(view, url, message, defaultValue, result);
+    }
+
     abstract public void innerProgressChanged(String newProgress);
 
     abstract public void innerReceivedTitle(String title);
 
     abstract public boolean innerJsAlert(WebView view, String url, String message, JsResult result);
+
+    abstract public boolean innerJsConfirm(WebView view, String url, String message, String defaultValue, JsPromptResult result);
 }
