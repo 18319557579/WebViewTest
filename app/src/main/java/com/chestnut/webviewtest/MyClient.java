@@ -1,6 +1,7 @@
 package com.chestnut.webviewtest;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.util.Log;
 import android.webkit.SslErrorHandler;
@@ -11,10 +12,28 @@ import android.webkit.WebViewClient;
 
 import com.chestnut.webviewtest.utils.LogUtil;
 
+import java.util.Set;
+
 public class MyClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-//        view.loadUrl(request.getUrl());
+        String url = request.getUrl().toString();
+        Uri uri = Uri.parse(url);
+        if (uri.getScheme().equals("js")) {
+            if (uri.getAuthority().equals("webview")) {
+                LogUtil.d("js调用了android的方法");
+                Set<String> collection =  uri.getQueryParameterNames();
+                for (String sss : collection) {
+                    LogUtil.d("参数依次是：" + sss);
+                }
+
+                String result = "世界你好";
+                view.loadUrl("javascript:returnResult(\"" + result + "\")");
+
+                return true;
+            }
+        }
+
         LogUtil.d("加载的URL：" + request.getUrl().toString());
         view.loadUrl(request.getUrl().toString());
         return true;

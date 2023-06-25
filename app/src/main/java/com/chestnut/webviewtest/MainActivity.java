@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mBinding.btnJsJava.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                intent.putExtra(WebViewActivity.KEY_URL, "file:///android_asset/jstojava.html");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

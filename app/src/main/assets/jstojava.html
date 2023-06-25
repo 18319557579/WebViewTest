@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carson</title>
+    <script>
+
+         function callAndroid(){
+            var ttt = test.hello("js给java的参数");
+            console.log("Daisy获取到了返回值：" + ttt)
+         }
+
+        //这个要调用document.location方法，会被拦截掉
+         function callAndroid2(){
+            document.location = "js://webview?arg1=111&arg2=222";
+         }
+
+         function returnResult(result) {
+            console.log("Daisy 用java调js的方式获得返回值：" + result)
+         }
+
+    </script>
+</head>
+
+<body>
+    <button type="button" id="button1" onclick="callAndroid()"
+            style="height:50px;width:100px">调用Java方法
+    </button>
+
+    <button type="button" id="button2" onclick="callAndroid2()"
+            style="height:50px;width:100px">调用Java方法2
+    </button>
+</body>
+</html>

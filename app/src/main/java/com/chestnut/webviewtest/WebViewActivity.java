@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.chestnut.webviewtest.databinding.ActivityWebViewBinding;
+import com.chestnut.webviewtest.map.AndroidToJs;
 import com.chestnut.webviewtest.utils.LogUtil;
 
 public class WebViewActivity extends AppCompatActivity {
@@ -127,15 +128,17 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding.btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.goBackOrForward(1);
+                String result = "世界你好";
+                webView.loadUrl("javascript:returnResult(\"" + result + "\")");
             }
         });
 
     }
 
     private void initWebView() {
-//        webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
+
+        webView.addJavascriptInterface(new AndroidToJs(), "test");
 
         Intent intent = getIntent();
         String url = intent.getStringExtra(KEY_URL);
