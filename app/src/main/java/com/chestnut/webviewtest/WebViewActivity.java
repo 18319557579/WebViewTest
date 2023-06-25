@@ -11,12 +11,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JsResult;
+import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.chestnut.webviewtest.databinding.ActivityWebViewBinding;
+import com.chestnut.webviewtest.utils.LogUtil;
 
 public class WebViewActivity extends AppCompatActivity {
 
@@ -83,7 +85,12 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding.btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.getSettings().setLoadsImagesAutomatically(true);
+                webView.evaluateJavascript("javascript:callJS()", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String value) {
+                        LogUtil.d("得到了返回结果：" + value);
+                    }
+                });
 
             }
         });
