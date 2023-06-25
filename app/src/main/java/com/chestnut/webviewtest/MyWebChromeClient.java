@@ -1,5 +1,6 @@
 package com.chestnut.webviewtest;
 
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
@@ -18,7 +19,14 @@ public abstract class MyWebChromeClient extends WebChromeClient {
         innerReceivedTitle(title);
     }
 
+    @Override
+    public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+        return innerJsAlert(view, url, message, result);
+    }
+
     abstract public void innerProgressChanged(String newProgress);
 
     abstract public void innerReceivedTitle(String title);
+
+    abstract public boolean innerJsAlert(WebView view, String url, String message, JsResult result);
 }

@@ -23,13 +23,19 @@
         android:id="@+id/btn_skip_three"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="本地"/>
+        android:text="本地页面"/>
 
     <Button
         android:id="@+id/btn_skip_four"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="加载一波错误"/>
+
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="弹窗"/>
 
 
 

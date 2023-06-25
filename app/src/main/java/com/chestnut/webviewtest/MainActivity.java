@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mBinding.btnDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                intent.putExtra(WebViewActivity.KEY_URL, "file:///android_asset/myjs.html");
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

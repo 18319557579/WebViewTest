@@ -1,13 +1,16 @@
 package com.chestnut.webviewtest;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JsResult;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -35,6 +38,22 @@ public class WebViewActivity extends AppCompatActivity {
         @Override
         public void innerReceivedTitle(String title) {
             mBinding.tvTitle.setText(title);
+        }
+
+        @Override
+        public boolean innerJsAlert(WebView view, String url, String message, JsResult result) {
+            AlertDialog.Builder b = new AlertDialog.Builder(WebViewActivity.this);
+            b.setTitle("Alert");
+            b.setMessage(message);
+            b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.confirm();
+                }
+            });
+            b.setCancelable(false);
+            b.create().show();
+            return true;
         }
     };
 
@@ -72,7 +91,12 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding.btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.getSettings().setLoadsImagesAutomatically(false);
+                webView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:callJS()");
+                    }
+                });
             }
         });
 
