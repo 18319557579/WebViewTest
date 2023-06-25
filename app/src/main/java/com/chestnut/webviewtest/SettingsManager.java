@@ -29,7 +29,7 @@ public class SettingsManager {
 
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
-        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowFileAccess(false);
 
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
@@ -46,5 +46,10 @@ public class SettingsManager {
 
         //浏览器数据库
         webSettings.setDatabaseEnabled(true);
+
+        webSettings.setSavePassword(false);
+
+        webSettings.setAllowFileAccessFromFileURLs(false);
+        webSettings.setAllowUniversalAccessFromFileURLs(false);
     }
 }
