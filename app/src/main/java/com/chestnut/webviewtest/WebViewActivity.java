@@ -23,6 +23,19 @@ public class WebViewActivity extends AppCompatActivity {
 
     SettingsManager settingsManager;
 
+    //原来是可以在变量这里实现某个类，并重写方法的
+    MyWebChromeClient mwcc = new MyWebChromeClient() {
+        @Override
+        public void innerProgressChanged(String newProgress) {
+            mBinding.tvProgress.setText(newProgress);
+        }
+
+        @Override
+        public void innerReceivedTitle(String title) {
+            mBinding.tvTitle.setText(title);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +52,8 @@ public class WebViewActivity extends AppCompatActivity {
         settingsManager.setSettings();
 
         webView.setWebViewClient(new MyClient());
+        webView.setWebChromeClient(mwcc);
+
     }
 
     private void initView() {
