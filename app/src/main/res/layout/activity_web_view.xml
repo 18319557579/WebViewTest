@@ -21,11 +21,17 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_title"/>
 
-    <com.chestnut.webviewtest.MyWebView
-        android:id="@+id/wb"
+    <FrameLayout
+        android:id="@+id/rl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tv_progress"/>
+
+<!--    <com.chestnut.webviewtest.MyWebView
+        android:id="@+id/wb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_progress"/>-->
 
     <Button
         android:id="@+id/btn_one"

@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.chestnut.webviewtest.databinding.ActivityWebViewBinding;
@@ -42,8 +44,10 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding = ActivityWebViewBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-
-        webView = mBinding.wb;
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        webView = new WebView(getApplicationContext());
+        webView.setLayoutParams(params);
+        mBinding.rlContainer.addView(webView);
 
         initView();
         initWebView();
@@ -142,8 +146,14 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if (webView != null) {
+            webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+            webView.clearHistory();
+
+            ((ViewGroup) webView.getParent()).removeView(webView);
+            webView.destroy();
+            webView = null;
+        }
         super.onDestroy();
-        mBinding.getRoot().removeView(webView);
-        webView.destroy();
     }
 }
