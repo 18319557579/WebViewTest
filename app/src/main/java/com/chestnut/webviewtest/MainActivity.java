@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mBinding.btnSkipFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                intent.putExtra(WebViewActivity.KEY_URL, "192.168.43.141");
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
