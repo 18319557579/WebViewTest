@@ -111,7 +111,7 @@ public class WebViewActivity extends AppCompatActivity {
         settingsManager = new SettingsManager(webView);
         settingsManager.setSettings();
 
-        webView.setWebViewClient(new MyClient());
+        webView.setWebViewClient(new MyClient(this));
         webView.setWebChromeClient(mwcc);
 
     }
