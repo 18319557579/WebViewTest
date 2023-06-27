@@ -20,6 +20,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.chestnut.webviewtest.click.LongClickCustom;
 import com.chestnut.webviewtest.databinding.ActivityWebViewBinding;
 import com.chestnut.webviewtest.map.AndroidToJs;
 import com.chestnut.webviewtest.utils.LogUtil;
@@ -181,6 +182,8 @@ public class WebViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        webView.setOnLongClickListener(new LongClickCustom());
 
         Intent intent = getIntent();
         String url = intent.getStringExtra(KEY_URL);
