@@ -73,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mBinding.btnToTaobao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                intent.putExtra(WebViewActivity.KEY_URL, "https://ai.m.taobao.com/?pid=mm_117626150_15986938_60582361");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

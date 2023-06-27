@@ -45,7 +45,7 @@ public class MyClient extends WebViewClient {
         } else { //加载的url是自定义协议地址
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                mActivity.startActivity(intent);
+//                mActivity.startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -80,7 +80,7 @@ public class MyClient extends WebViewClient {
             + ", 错误的url：" + request.getUrl().toString());
 
         if (error.getErrorCode() == -2) {
-            view.loadUrl("file:///android_asset/index.html");
+//            view.loadUrl("file:///android_asset/index.html");
         }
     }
 

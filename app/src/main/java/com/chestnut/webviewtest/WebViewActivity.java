@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.DownloadListener;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.ValueCallback;
@@ -145,17 +146,15 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding.btnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.clearFormData();
+                String currentUrl =  webView.getUrl();
+                Log.d("Daisy", "当前页面的URL：" + currentUrl);
             }
         });
 
         mBinding.btnFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean ttt = webView.canGoBack();
-                Log.d("Daisy", "是否可以后退：" + ttt);
-
-                webView.goBackOrForward(-1);
+                webView.reload();
             }
         });
 
@@ -174,6 +173,15 @@ public class WebViewActivity extends AppCompatActivity {
 
         webView.addJavascriptInterface(new AndroidToJs(), "test");
 
+        webView.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
         Intent intent = getIntent();
         String url = intent.getStringExtra(KEY_URL);
         webView.loadUrl(url);
@@ -191,25 +199,27 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        webView.onResume();
+        webView.resumeTimers();
+        webView.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        webView.onPause();
+        webView.onPause();
+        webView.pauseTimers();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        webView.resumeTimers();
+//        webView.resumeTimers();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        webView.pauseTimers();
+//        webView.pauseTimers();
     }
 
     @Override

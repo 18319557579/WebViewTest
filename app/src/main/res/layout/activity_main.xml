@@ -44,6 +44,11 @@
         android:text="js调用java的代码"/>
 
 
+    <Button
+        android:id="@+id/btn_to_taobao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="去淘宝"/>
 
 
 
