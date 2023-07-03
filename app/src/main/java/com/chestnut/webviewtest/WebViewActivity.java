@@ -162,8 +162,7 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding.btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = "世界你好";
-                webView.loadUrl("javascript:returnResult(\"" + result + "\")");
+                webView.stopLoading();
             }
         });
 
