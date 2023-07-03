@@ -12,7 +12,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding mBinding;
 
-    private static final String URL = "www.google.com";
+//    private static final String URL = "www.google.com";
+    private static final String URL = "https://m.jd.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

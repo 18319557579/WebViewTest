@@ -12,7 +12,7 @@ public abstract class MyWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int newProgress) {
         String progress = newProgress + "%";
         LogUtil.d("进度发生改变：" + progress);
-        innerProgressChanged(progress);
+        innerProgressChanged(newProgress);
     }
 
     @Override
@@ -30,7 +30,7 @@ public abstract class MyWebChromeClient extends WebChromeClient {
         return innerJsConfirm(view, url, message, defaultValue, result);
     }
 
-    abstract public void innerProgressChanged(String newProgress);
+    abstract public void innerProgressChanged(int newProgress);
 
     abstract public void innerReceivedTitle(String title);
 

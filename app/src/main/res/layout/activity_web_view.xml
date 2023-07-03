@@ -21,11 +21,20 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_title"/>
 
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:visibility="visible"
+        android:layout_below="@id/tv_progress"/>
+
     <FrameLayout
         android:id="@+id/rl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tv_progress"/>
+        android:layout_below="@id/pb_progress"/>
 
 <!--    <com.chestnut.webviewtest.MyWebView
         android:id="@+id/wb"

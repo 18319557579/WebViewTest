@@ -41,8 +41,15 @@ public class WebViewActivity extends AppCompatActivity {
     //原来是可以在变量这里实现某个类，并重写方法的
     MyWebChromeClient mwcc = new MyWebChromeClient() {
         @Override
-        public void innerProgressChanged(String newProgress) {
-            mBinding.tvProgress.setText(newProgress);
+        public void innerProgressChanged(int newProgress) {
+            mBinding.tvProgress.setText(newProgress + "%");
+            mBinding.pbProgress.setProgress(newProgress);
+
+            if (newProgress == 100) {
+                mBinding.pbProgress.setVisibility(View.INVISIBLE);
+            } else {
+                mBinding.pbProgress.setVisibility(View.VISIBLE);
+            }
         }
 
         @Override
