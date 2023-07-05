@@ -34,7 +34,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     ActivityWebViewBinding mBinding;
 
-    WebView webView;
+    MyWebView webView;
 
     SettingsManager settingsManager;
 
@@ -110,7 +110,7 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(mBinding.getRoot());
 
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        webView = new WebView(getApplicationContext());
+        webView = new MyWebView(getApplicationContext());
         webView.setLayoutParams(params);
         mBinding.rlContainer.addView(webView);
 
