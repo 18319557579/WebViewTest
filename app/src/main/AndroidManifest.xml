@@ -13,7 +13,7 @@
         android:theme="@style/Theme.WebViewTest"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".WebViewContainerActivity"
+            android:name=".brand_new.WebViewContainerActivity"
             android:exported="false" />
         <activity android:name=".WebViewActivity" />
         <activity

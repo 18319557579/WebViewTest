@@ -1,57 +1,50 @@
-package com.chestnut.webviewtest;
+package com.chestnut.webviewtest.brand_new.expand;
 
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class SettingsManager {
-    WebView webView;
-    WebSettings webSettings;
+public class WVSettings {
+    public static void setSettings(WebView wv) {
+        WebSettings webSettings = wv.getSettings();
 
-    public SettingsManager(WebView wb) {
-        webView = wb;
-        webSettings = webView.getSettings();
-    }
-
-    public void setSettings() {
+        //设置支持JS
         webSettings.setJavaScriptEnabled(true);
 
-//        webSettings.setPluginState();
-
+        //设置自适应屏幕，两者合用
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
 
-        //要下面这两个同时设置了true，才能实现缩放。上面的是下面的前提
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
+        //隐藏原生的缩放控件
+        webSettings.setDisplayZoomControls(false);
 
-        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
-
-
+        //缓存使用默认
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
+        //不能访问文件
         webSettings.setAllowFileAccess(false);
 
+        //支持通过JS打开新窗口
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-
-        webSettings.setLoadsImagesAutomatically(true);
 
         //卧槽，设置为false后，图片都不会加载了。
         webSettings.setLoadsImagesAutomatically(true);
 
+        //设置编码格式
         webSettings.setDefaultTextEncodingName("UTF-8");
 
-
-        //用于使用localStorage
+        //允许让网站使用localStorage
         webSettings.setDomStorageEnabled(true);
 
-        //浏览器数据库
+        //允许让网站使用浏览器
         webSettings.setDatabaseEnabled(true);
 
+        //不保存密码
         webSettings.setSavePassword(false);
 
         webSettings.setAllowFileAccessFromFileURLs(false);
         webSettings.setAllowUniversalAccessFromFileURLs(false);
 
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+
     }
 }

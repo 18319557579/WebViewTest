@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.chestnut.webviewtest.brand_new.WebViewContainerActivity;
 import com.chestnut.webviewtest.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -80,6 +81,33 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
                 intent.putExtra(WebViewActivity.KEY_URL, "https://ai.m.taobao.com/?pid=mm_117626150_15986938_60582361");
+                startActivity(intent);
+            }
+        });
+
+        mBinding.btnJumpA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewContainerActivity.class);
+                intent.putExtra(WebViewContainerActivity.LOADED_URL, "https://m.jd.com/");
+                startActivity(intent);
+            }
+        });
+
+        mBinding.btnJumpB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewContainerActivity.class);
+                intent.putExtra(WebViewContainerActivity.LOADED_URL, "www.baidu.com");
+                startActivity(intent);
+            }
+        });
+
+        mBinding.btnJumpC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewContainerActivity.class);
+                intent.putExtra(WebViewContainerActivity.LOADED_URL, "https://ai.m.taobao.com/?pid=mm_117626150_15986938_60582361");
                 startActivity(intent);
             }
         });
