@@ -18,6 +18,7 @@ import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.chestnut.webviewtest.click.LongClickCustom;
@@ -157,7 +158,7 @@ public class WebViewActivity extends AppCompatActivity {
                 String currentUrl =  webView.getUrl();
                 Log.d("Daisy", "当前页面的URL：" + currentUrl);
 
-                webView.scrollTo(0, 0);
+                webView.setScrollY(0);
             }
         });
 
