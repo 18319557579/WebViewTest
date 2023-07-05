@@ -156,6 +156,8 @@ public class WebViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String currentUrl =  webView.getUrl();
                 Log.d("Daisy", "当前页面的URL：" + currentUrl);
+
+                webView.scrollTo(0, 0);
             }
         });
 
