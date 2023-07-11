@@ -50,6 +50,7 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
         }
     }
 
+    //todo 标题这里的顺序会有点问题，这里的设置和shouldOverrideUrlLoading的设置顺序，目前还没有掌握
     @Override
     public void onReceivedTitle(WebView view, String title) {
         LogTool.d("回调了标题：" + title);

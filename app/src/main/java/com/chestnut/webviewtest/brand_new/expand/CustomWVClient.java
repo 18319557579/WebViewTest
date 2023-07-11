@@ -31,6 +31,7 @@ public class CustomWVClient extends WebViewClient {
         LogTool.d("加载的url:" + url);
 
         if (view.getUrl().startsWith("http://") || view.getUrl().startsWith("https://")) {
+            //todo 和onReceivedTitle那里有冲突
             wvTvTitle.setText(view.getUrl());
         }
 
