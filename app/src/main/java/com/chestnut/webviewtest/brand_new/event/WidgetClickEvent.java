@@ -19,5 +19,19 @@ public class WidgetClickEvent {
                 }
             }
         });
+
+        activity.findViewById(R.id.wb_iv_refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.reload();
+            }
+        });
+
+        activity.findViewById(R.id.wb_iv_interrupt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.stopLoading();
+            }
+        });
     }
 }
