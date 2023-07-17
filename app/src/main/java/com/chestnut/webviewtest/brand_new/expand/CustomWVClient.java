@@ -2,6 +2,7 @@ package com.chestnut.webviewtest.brand_new.expand;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.text.TextUtils;
@@ -10,8 +11,10 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chestnut.webviewtest.R;
 import com.chestnut.webviewtest.brand_new.tools.LogTool;
 import com.chestnut.webviewtest.utils.LogUtil;
@@ -20,9 +23,16 @@ public class CustomWVClient extends WebViewClient {
     private Activity mActivity;
     private TextView wvTvTitle;
 
+    //回退按钮
+    private ImageView wvIvBack;
+    //前进按钮
+    private ImageView wvIvForward;
+
     public CustomWVClient(Activity mActivity) {
         this.mActivity = mActivity;
         wvTvTitle = mActivity.findViewById(R.id.wv_tv_title);
+        wvIvBack = mActivity.findViewById(R.id.wv_iv_back);
+        wvIvForward = mActivity.findViewById(R.id.wv_iv_forward);
     }
 
     @Override
@@ -64,5 +74,28 @@ public class CustomWVClient extends WebViewClient {
     public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
         LogTool.d("出现了SSL错误：" + error.toString());
         handler.proceed();
+    }
+
+    /*
+    发现canGoBack()和canGoForward()在onPageStarted()回调后准确
+     */
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        LogTool.d("页面回调onPageStarted  " + url);
+        LogTool.d("222 是否可以回退：" + view.canGoBack());
+        LogTool.d("222 是否可以前进：" + view.canGoForward());
+
+
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        LogTool.d("页面回调onPageFinished" + url);
+        LogTool.d("333 是否可以回退：" + view.canGoBack());
+        LogTool.d("333 是否可以前进：" + view.canGoForward());
+
+
     }
 }

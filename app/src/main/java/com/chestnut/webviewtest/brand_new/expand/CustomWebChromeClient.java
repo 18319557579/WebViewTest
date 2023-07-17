@@ -29,6 +29,11 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
     //中断加载
     private ImageView wvIvLoad;
 
+    //回退按钮
+    private ImageView wvIvBack;
+    //前进按钮
+    private ImageView wvIvForward;
+
     public CustomWebChromeClient(AppCompatActivity mActivity) {
         this.mActivity = mActivity;
     }
@@ -42,6 +47,9 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
             mProgressBar = mActivity.findViewById(R.id.wv_pb_progress);
             wvTvTitle = mActivity.findViewById(R.id.wv_tv_title);
             wvIvLoad = mActivity.findViewById(R.id.wv_iv_load);
+
+            wvIvBack = mActivity.findViewById(R.id.wv_iv_back);
+            wvIvForward = mActivity.findViewById(R.id.wv_iv_forward);
         }
     }
 
@@ -74,6 +82,18 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
                 Glide.with(mActivity).load(R.drawable.wv_close).into(wvIvLoad);
             }
 
+        }
+
+        if (view.canGoBack()) {
+            Glide.with(mActivity).load(R.drawable.wv_back).into(wvIvBack);
+        } else {
+            Glide.with(mActivity).load(R.drawable.wv_back_unable).into(wvIvBack);
+        }
+
+        if (view.canGoForward()) {
+            Glide.with(mActivity).load(R.drawable.wv_forward).into(wvIvForward);
+        } else {
+            Glide.with(mActivity).load(R.drawable.wv_forward_unable).into(wvIvForward);
         }
     }
 
