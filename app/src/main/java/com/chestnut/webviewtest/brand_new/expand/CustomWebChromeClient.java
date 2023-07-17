@@ -48,7 +48,8 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
         LogTool.d("进度发生改变：" + newProgress);
-
+        LogTool.d("是否可以回退：" + view.canGoBack());
+        LogTool.d("是否可以前进：" + view.canGoForward());
         mProgressBar.setProgress(newProgress);
 
         if (newProgress == 100) {
