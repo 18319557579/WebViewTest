@@ -1,6 +1,5 @@
 package com.chestnut.webviewtest.brand_new.expand;
 
-import android.app.Activity;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -12,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 
 import com.bumptech.glide.Glide;
 import com.chestnut.webviewtest.R;
@@ -29,11 +26,8 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
     //标题
     private TextView wvTvTitle;
 
-    //刷新
-//    private ImageView wvIvRefresh;
-
     //中断加载
-    private ImageView wvIvInterrupt;
+    private ImageView wvIvLoad;
 
     public CustomWebChromeClient(AppCompatActivity mActivity) {
         this.mActivity = mActivity;
@@ -47,9 +41,7 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
             LogTool.d("当前的状态：" + mActivity.getLifecycle().getCurrentState());
             mProgressBar = mActivity.findViewById(R.id.wv_pb_progress);
             wvTvTitle = mActivity.findViewById(R.id.wv_tv_title);
-
-//            wvIvRefresh = mActivity.findViewById(R.id.wv_iv_refresh);
-            wvIvInterrupt = mActivity.findViewById(R.id.wv_iv_interrupt);
+            wvIvLoad = mActivity.findViewById(R.id.wv_iv_load);
         }
     }
 
@@ -62,11 +54,11 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
         if (newProgress == 100) {
             mProgressBar.setVisibility(View.INVISIBLE);
 
-            boolean isLoaded = (boolean) wvIvInterrupt.getTag();
+            boolean isLoaded = (boolean) wvIvLoad.getTag();
             if (!isLoaded) {
                 //设置已经加载完毕
-                wvIvInterrupt.setTag(true);
-                Glide.with(mActivity).load(R.drawable.refresh).into(wvIvInterrupt);
+                wvIvLoad.setTag(true);
+                Glide.with(mActivity).load(R.drawable.refresh).into(wvIvLoad);
             }
 
 
@@ -76,9 +68,9 @@ public class CustomWebChromeClient extends WebChromeClient implements LifecycleE
             /*这里的作用是，只有原本是已经加载完成了，才会去设置图片与tag，因为进度不到100%时，
             * 会重复回调多次这里，加上判断的话可以防止多次无效地执行下面的语句。上面那个if也
             * 进行了同样的操作，主要是为了逻辑上和这里对齐*/
-            if (wvIvInterrupt.getTag() == null || (boolean) wvIvInterrupt.getTag()) {
-                wvIvInterrupt.setTag(false);
-                Glide.with(mActivity).load(R.drawable.wv_close).into(wvIvInterrupt);
+            if (wvIvLoad.getTag() == null || (boolean) wvIvLoad.getTag()) {
+                wvIvLoad.setTag(false);
+                Glide.with(mActivity).load(R.drawable.wv_close).into(wvIvLoad);
             }
 
         }

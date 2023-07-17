@@ -11,7 +11,7 @@ public class WidgetClickEvent {
     private static ImageView wvIvInterrupt;
 
     public static void setEvent(Activity activity, WebView webView)  {
-        wvIvInterrupt = activity.findViewById(R.id.wv_iv_interrupt);
+        wvIvInterrupt = activity.findViewById(R.id.wv_iv_load);
 
         activity.findViewById(R.id.wv_iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,7 +24,7 @@ public class WidgetClickEvent {
             }
         });
 
-        activity.findViewById(R.id.wv_iv_interrupt).setOnClickListener(new View.OnClickListener() {
+        activity.findViewById(R.id.wv_iv_load).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean isLoaded = (boolean) wvIvInterrupt.getTag();
