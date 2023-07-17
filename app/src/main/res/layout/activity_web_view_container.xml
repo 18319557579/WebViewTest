@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/wb_rl_head"
+        android:id="@+id/wv_rl_head"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true">
@@ -25,30 +25,28 @@
             android:maxLines="1"
             android:ellipsize="end"
 
-            android:layout_toLeftOf="@id/wb_iv_refresh"
+            android:layout_toLeftOf="@id/wv_iv_interrupt"
             android:layout_alignParentLeft="true"/>
 
-        <ImageView
-            android:id="@+id/wb_iv_refresh"
+<!--        <ImageView
+            android:id="@+id/wv_iv_refresh"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="7dp"
 
             android:src="@drawable/refresh"
 
-            android:layout_toLeftOf="@id/wb_iv_interrupt"
-            android:layout_centerVertical="true"/>
+            android:layout_toLeftOf="@id/wv_iv_interrupt"
+            android:layout_centerVertical="true"/>-->
 
         <ImageView
-            android:id="@+id/wb_iv_interrupt"
+            android:id="@+id/wv_iv_interrupt"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="7dp"
 
-            android:src="@drawable/wv_close"
-
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true" />
 
 
         <ProgressBar
@@ -67,7 +65,7 @@
         android:id="@+id/wv_rl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/wb_rl_head"
+        android:layout_below="@id/wv_rl_head"
         android:layout_above="@id/wv_ll_foot"/>
 
     <LinearLayout
