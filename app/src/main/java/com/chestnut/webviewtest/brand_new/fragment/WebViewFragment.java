@@ -31,7 +31,7 @@ public class WebViewFragment extends FragmentCallback {
     CustomWebChromeClient_Fragment customWebChromeClient;
     CustomWVClient_Fragment customWVClientFragment;
 
-    private CustomWebView mWebView;
+    public CustomWebView mWebView;
 
 
     @Override
@@ -79,7 +79,7 @@ public class WebViewFragment extends FragmentCallback {
         loadParams();
     }
 
-    private void loadParams() {
+    public void loadParams() {
         mWebView.loadUrl(getArguments().getString(WebViewFragment.LOADED_URL));
     }
 

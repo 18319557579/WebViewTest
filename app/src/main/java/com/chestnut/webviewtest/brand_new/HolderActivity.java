@@ -39,17 +39,8 @@ public class HolderActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         //获取当前的Fragment
-        Fragment currentFragment = null;
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for(Fragment fragment : fragments){
-            if(fragment != null && fragment.isVisible()) {
-                currentFragment = fragment;
-                break;
-            }
-        }
-
+        Fragment currentFragment = getCurrentFragment();
         LogTool.d("当前的fragment：" + currentFragment);
-
         if (currentFragment != null) {
             transaction.hide(currentFragment);
         }
@@ -64,6 +55,22 @@ public class HolderActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        findViewById(R.id.wv_iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment currentFragment = getCurrentFragment();
+                if (currentFragment instanceof WebViewFragment) {
+                    WebViewFragment webViewFragment = (WebViewFragment) currentFragment;
+                    //如果还能网页还能后退，那么后退
+                    if (webViewFragment.mWebView.canGoBack()) {
+                        webViewFragment.mWebView.goBack();
+                    } else {
+                        addOrSwitchFragment(mHomepageFragment);
+                    }
+                }
+            }
+        });
+
         findViewById(R.id.wv_iv_go_home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,11 +82,6 @@ public class HolderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Bundle bundle = new Bundle();
-                bundle.putString(WebViewFragment.LOADED_URL, "https://m.jd.com/");
-                mWebViewFragment.setArguments(bundle);
-
-                addOrSwitchFragment(mWebViewFragment);
             }
         });
     }
@@ -88,8 +90,41 @@ public class HolderActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             LogTool.d("点击了返回按钮");
+
+            Fragment currentFragment = getCurrentFragment();
+            if (currentFragment instanceof WebViewFragment) {
+                WebViewFragment webViewFragment = (WebViewFragment) currentFragment;
+                //如果还能网页还能后退，那么后退
+                if (webViewFragment.mWebView.canGoBack()) {
+                    webViewFragment.mWebView.goBack();
+                } else {
+                    addOrSwitchFragment(mHomepageFragment);
+                }
+            }
+
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void jumpWebViewWithUrl(String url) {
+        Bundle bundle = new Bundle();
+        bundle.putString(WebViewFragment.LOADED_URL, url);
+        mWebViewFragment.setArguments(bundle);
+
+        addOrSwitchFragment(mWebViewFragment);
+    }
+
+    private Fragment getCurrentFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        List<Fragment> fragments = fragmentManager.getFragments();
+        for(Fragment fragment : fragments){
+            if(fragment != null && fragment.isVisible()) {
+                return fragment;
+            }
+        }
+
+        return null;
     }
 }
