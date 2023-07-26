@@ -74,4 +74,10 @@ public class FragmentCallback extends Fragment {
         super.onDetach();
         LogTool.v(getSimpleName() + " 回调 onDetach");
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        LogTool.v(getSimpleName() + " 回调 onHiddenChanged：" + hidden);
+    }
 }
