@@ -1,11 +1,15 @@
 package com.chestnut.webviewtest.brand_new.fragment;
 
+import static android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +22,9 @@ import com.chestnut.webviewtest.brand_new.HomeActivity;
 import com.chestnut.webviewtest.brand_new.WebViewContainerActivity;
 import com.chestnut.webviewtest.brand_new.tools.LogTool;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class HomepageFragment extends FragmentCallback {
     @Nullable
     @Override
@@ -28,6 +35,24 @@ public class HomepageFragment extends FragmentCallback {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.wv_iv_start_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText edt = view.findViewById(R.id.wv_et_search);
+                String searchContent = edt.getText().toString();
+
+                HolderActivity holderActivity = (HolderActivity) getActivity();
+                try {
+                    holderActivity.jumpWebViewWithUrl("http://www.baidu.com/s?&ie=utf-8&oe=UTF-8&wd=" + URLEncoder.encode(searchContent,"UTF-8"));
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         view.findViewById(R.id.wv_btn_one).setOnClickListener(new View.OnClickListener() {
             @Override
