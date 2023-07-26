@@ -95,7 +95,8 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:padding="7dp"/>
+            android:padding="7dp"
+            android:src="@drawable/wv_home"/>
 
         <ImageView
             android:layout_weight="1"

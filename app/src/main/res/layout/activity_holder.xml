@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".brand_new.HolderActivity">
+
+    <FrameLayout
+        android:id="@+id/wv_rl_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/wv_ll_foot"/>
+
+    <LinearLayout
+        android:id="@+id/wv_ll_foot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/wv_iv_back"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:padding="7dp"
+            android:src="@drawable/wv_back_unable"/>
+
+        <ImageView
+            android:id="@+id/wv_iv_forward"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:padding="7dp"
+            android:src="@drawable/wv_forward_unable"/>
+
+        <ImageView
+            android:id="@+id/wv_iv_go_home"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:padding="7dp"
+            android:src="@drawable/wv_home"/>
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:padding="7dp"/>
+
+        <ImageView
+            android:id="@+id/iv_test"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:padding="7dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
