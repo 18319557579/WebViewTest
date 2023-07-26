@@ -10,6 +10,9 @@ public class LogTool {
         return true;
     }
 
+    public static void v(String msg) {
+        LogTool.v(TAG, msg);
+    }
 
     public static void d(String msg) {
         LogTool.d(TAG, msg);
@@ -20,6 +23,12 @@ public class LogTool {
     }
 
 //----------------------------------------------------------------
+    public static void v(String tag, String msg) {
+        if (canPrint()) {
+            Log.v(tag, msg);
+        }
+    }
+
     public static void d(String tag, String msg) {
         if (canPrint()) {
             Log.d(tag, msg);

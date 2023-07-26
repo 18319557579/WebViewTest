@@ -16,12 +16,18 @@ import com.chestnut.webviewtest.brand_new.tools.LogTool;
 
 public class HolderActivity extends AppCompatActivity {
 
+    private HomepageFragment mHomepageFragment;
+    private WebViewFragment mWebViewFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holder);
 
-        replaceFragment(new HomepageFragment());
+        mHomepageFragment = new HomepageFragment();
+        mWebViewFragment = new WebViewFragment();
+
+        replaceFragment(mHomepageFragment);
 
         setView();
     }
@@ -37,13 +43,19 @@ public class HolderActivity extends AppCompatActivity {
         findViewById(R.id.wv_iv_go_home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebViewFragment webViewFragment = new WebViewFragment();
+                replaceFragment(mHomepageFragment);
+            }
+        });
+
+        findViewById(R.id.wv_iv_select).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
                 bundle.putString(WebViewFragment.LOADED_URL, "https://m.jd.com/");
-                webViewFragment.setArguments(bundle);
+                mWebViewFragment.setArguments(bundle);
 
-                replaceFragment(webViewFragment);
+                replaceFragment(mWebViewFragment);
             }
         });
     }

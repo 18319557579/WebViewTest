@@ -24,7 +24,7 @@ import com.chestnut.webviewtest.brand_new.expand.WVSettings;
 import com.chestnut.webviewtest.brand_new.tools.LogTool;
 import com.chestnut.webviewtest.brand_new.wv.CustomWebView;
 
-public class WebViewFragment extends Fragment {
+public class WebViewFragment extends FragmentCallback {
 
     public static final String LOADED_URL = "WEB_VIEW_FRAGMENT_LOADED_URL";
 
@@ -33,15 +33,12 @@ public class WebViewFragment extends Fragment {
 
     private CustomWebView mWebView;
 
-    public WebViewFragment() {
-        super(R.layout.fragment_web_view);
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        LogTool.d("WebViewFragment 回调 onCreate");
+
 
         mWebView = createWebView();
 
@@ -60,11 +57,15 @@ public class WebViewFragment extends Fragment {
         return new CustomWebView(getActivity().getApplicationContext());
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_web_view, container, false);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LogTool.d("WebViewFragment 回调 onViewCreated");
 
         //代码生成WebView
         generateWebView(view, mWebView);
@@ -92,7 +93,6 @@ public class WebViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        LogTool.d("WebViewFragment 回调 onResume");
 
         mWebView.resumeTimers();
         mWebView.onResume();
@@ -101,7 +101,6 @@ public class WebViewFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        LogTool.d("WebViewFragment 回调 onPause");
 
         mWebView.onPause();
         mWebView.pauseTimers();
@@ -110,7 +109,6 @@ public class WebViewFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        LogTool.d("WebViewFragment 回调 onDestroy");
 
         if (mWebView != null) {
             mWebView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
