@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -81,6 +82,19 @@ public class HolderActivity extends AppCompatActivity {
         findViewById(R.id.wv_iv_select).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Fragment currentFragment = getCurrentFragment();
+                if (currentFragment instanceof WebViewFragment) {
+                    WebViewFragment webViewFragment = (WebViewFragment) currentFragment;
+                    String url = webViewFragment.mWebView.getUrl();
+
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, url);
+                    startActivity(Intent.createChooser(intent ,"分享"));
+                }
+
+
 
             }
         });
