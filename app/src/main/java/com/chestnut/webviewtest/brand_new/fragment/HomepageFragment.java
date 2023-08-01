@@ -77,6 +77,14 @@ public class HomepageFragment extends FragmentCallback {
                 holderActivity.jumpWebViewWithUrl("https://ai.m.taobao.com/?pid=mm_117626150_15986938_60582361");
             }
         });
+
+        view.findViewById(R.id.wv_btn_four).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HolderActivity holderActivity = (HolderActivity) getActivity();
+                holderActivity.jumpWebViewWithUrl("https://www.xiaohongshu.com/activity/sem/walle?groupid=60f954717ae4040001eabf05&keywordid=295091738519&ad_id=51246368408&segmentid=0");
+            }
+        });
     }
 
 

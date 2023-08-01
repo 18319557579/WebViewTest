@@ -59,7 +59,8 @@ public class CustomWVClient_Fragment extends WebViewClient implements FragmentLi
 
             LogTool.d("应用名：" + applicationName);
         } catch (Exception e) {
-            e.printStackTrace();
+
+            LogTool.d("查找应用名失败：" + e);
         }
         return true;
 
