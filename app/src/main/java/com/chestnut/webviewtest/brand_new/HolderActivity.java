@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebBackForwardList;
 
 import com.chestnut.webviewtest.R;
 import com.chestnut.webviewtest.brand_new.fragment.HomepageFragment;
@@ -96,6 +97,18 @@ public class HolderActivity extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        findViewById(R.id.wv_iv_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment currentFragment = getCurrentFragment();
+                if (currentFragment instanceof WebViewFragment) {
+                    WebViewFragment webViewFragment = (WebViewFragment) currentFragment;
+                    WebBackForwardList webBackForwardList = webViewFragment.mWebView.copyBackForwardList();
+                    LogTool.d("" + webBackForwardList.getCurrentIndex() + ", " + webBackForwardList.getCurrentItem().getUrl());
+                }
             }
         });
     }

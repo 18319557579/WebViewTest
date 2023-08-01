@@ -18,6 +18,10 @@ public class LogTool {
         LogTool.d(TAG, msg);
     }
 
+    public static void i(String msg) {
+        LogTool.i(TAG, msg);
+    }
+
     public static void e(String msg) {
         LogTool.e(TAG, msg);
     }
@@ -32,6 +36,12 @@ public class LogTool {
     public static void d(String tag, String msg) {
         if (canPrint()) {
             Log.d(tag, msg);
+        }
+    }
+
+    public static void i(String tag, String msg) {
+        if (canPrint()) {
+            Log.i(tag, msg);
         }
     }
 

@@ -4,6 +4,14 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--让所有带有android.intent.action.VIEW action的-->
+    <queries>
+        <intent>
+            <action
+                android:name="android.intent.action.VIEW" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
