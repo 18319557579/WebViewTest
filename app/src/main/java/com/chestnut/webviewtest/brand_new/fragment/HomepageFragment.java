@@ -42,7 +42,7 @@ public class HomepageFragment extends FragmentCallback {
                 EditText edt = view.findViewById(R.id.wv_et_search);
                 String searchContent = edt.getText().toString();
 
-                HolderActivity holderActivity = (HolderActivity) getActivity();
+                /*HolderActivity holderActivity = (HolderActivity) getActivity();
                 try {
                     holderActivity.jumpWebViewWithUrl("http://www.baidu.com/s?&ie=utf-8&oe=UTF-8&wd=" + URLEncoder.encode(searchContent,"UTF-8"));
                     InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -50,7 +50,10 @@ public class HomepageFragment extends FragmentCallback {
 
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException(e);
-                }
+                }*/
+
+                HolderActivity holderActivity = (HolderActivity) getActivity();
+                holderActivity.jumpWebViewWithUrl(searchContent);
             }
         });
 
