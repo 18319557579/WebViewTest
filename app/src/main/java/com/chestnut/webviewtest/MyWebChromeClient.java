@@ -1,5 +1,6 @@
 package com.chestnut.webviewtest;
 
+import android.webkit.ConsoleMessage;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -37,4 +38,14 @@ public abstract class MyWebChromeClient extends WebChromeClient {
     abstract public boolean innerJsAlert(WebView view, String url, String message, JsResult result);
 
     abstract public boolean innerJsConfirm(WebView view, String url, String message, String defaultValue, JsPromptResult result);
+
+    /**
+     * 这里重写了以后，js那边就不会打印了
+     * @return 如果消息由客户端处理了，则返回true
+     */
+    @Override
+    public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+        LogUtil.d(consoleMessage.message());
+        return true;
+    }
 }
