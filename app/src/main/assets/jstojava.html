@@ -25,6 +25,11 @@
             console.log("Daisy prompt调用java代码后，顺利获得返回值：" + result)
         }
 
+        function clickPrompt2() {
+            var result = prompt("kk://webview?arg1=333&arg2=444");
+            console.log("Daisy prompt调用java代码后2，顺利获得返回值：" + result)
+        }
+
     </script>
 </head>
 
@@ -35,7 +40,10 @@
     <button type="button" id="button2" onclick="callAndroid2()" style="height:50px;width:100px">调用Java方法2
     </button>
 
-    <button type="button" id="button3" onclick="clickPrompt()" style="height:50px;width:100px">调用Java方法（使用prompt）
+    <button type="button" id="button3" onclick="clickPrompt()" style="height:200px;width:200px">调用Java方法（使用prompt）
+    </button>
+
+    <button type="button" id="button4" onclick="clickPrompt2()" style="height:200px;width:200px">调用Java方法（使用prompt），但是kk协议
     </button>
 </body>
 

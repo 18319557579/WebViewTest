@@ -91,14 +91,16 @@ public class WebViewActivity extends AppCompatActivity {
                     // 可以在协议上带有参数并传递到Android上
                     HashMap<String, String> params = new HashMap<>();
                     Set<String> collection = uri.getQueryParameterNames();
-                    LogUtil.d("参数为：" + collection);
+                    for (String paramKey : collection) {
+                        LogUtil.d("参数: " + paramKey + ", 参数值: " + uri.getQueryParameter(paramKey));
+                    }
 
                     //参数result:代表消息框的返回值(输入值)
                     result.confirm("js调用了Android的方法成功啦");
                 }
                 return true;
             }
-            return super.onJsPrompt(view, url, message, defaultValue, result);
+            return false;
         }
 
 
@@ -130,7 +132,7 @@ public class WebViewActivity extends AppCompatActivity {
         mBinding.btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.evaluateJavascript("javascript:callJS()", new ValueCallback<String>() {
+                webView.evaluateJavascript("javascript:callJS('hello js')", new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String value) {
                         LogUtil.d("得到了返回结果：" + value);
